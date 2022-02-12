@@ -33,6 +33,40 @@ const resolvers = {
       await newTodo.save();
       return newTodo;
     },
+    //deleteTodo Mutation
+    deleteTodo: async (root, args) => {
+      await Todo.findByIdAndDelete(args.id);
+      return "The Todo has been deleted.";
+    },
+
+    //updateTodo MUTATION
+    updateTodo: async (root, args) => {
+      const { id, title, detail, date } = args;
+      //delcaring the updatedTodo variable as an object
+      const updatedTodo = {};
+      //checking to see if there was a title submitted in the updateTodo request
+      //If there was no updated title submitted then we are using the original title
+      //and declaring that as the "title" again.
+      if (title != undefined) {
+        updatedTodo.title = title;
+      }
+      //checking to see if there was new detail submitted in the updateTodo request
+      //If there was no updated detail submitted then we are using the original detail
+      //and declaring that as the "detail" again.
+      if (detail != undefined) {
+        updatedTodo.detail = detail;
+      }
+      //checking to see if there was new date submitted in the updateTodo request
+      //If there was no updated date submitted then we are using the original date
+      //and declaring that as the "date" again.
+      if (date != undefined) {
+        updatedTodo.date = date;
+      }
+      //passing in the updated Todo and saving that as the 'todo' variable.
+      const todo = await Todo.findByIdAndUpdate(id, updatedTodo, { new: true });
+
+      return todo;
+    },
   },
 };
 
