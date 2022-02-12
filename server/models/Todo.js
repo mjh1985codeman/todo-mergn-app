@@ -12,7 +12,7 @@ const todoSchema = new Schema(
     },
     date: Date,
   },
-  { typesteamps: true }
+  { typestamps: true }
 );
 
 const Todo = mongoose.model("todo", todoSchema);
