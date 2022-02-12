@@ -14,6 +14,11 @@ const resolvers = {
       const todos = await Todo.find();
       return todos;
     },
+    //resolver for the getSingleTodo Query
+    getSingleTodo: async (root, args) => {
+      const todo = await Todo.findById(args.id);
+      return todo;
+    },
   },
 
   //**MUTATION RESOLVERS**

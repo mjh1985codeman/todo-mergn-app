@@ -17,6 +17,7 @@ const typeDefs = gql`
   type Query {
     welcome: String
     getTodos: [Todo]
+    getSingleTodo(id: ID): Todo
   }
 
   type Mutation {
